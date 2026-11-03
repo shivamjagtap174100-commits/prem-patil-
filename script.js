@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedDate: null,
     selectedActivity: null,
     soundEnabled: true,
-    senderName: 'Your Name',
+    senderName: 'Prem Patil',
     typewriterTimeout: null,
     typewriterRunning: false
   };
@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Love note template
   const NOTE_TEMPLATE = 
-`you're really cute no matter what. don't let anyone tell you any different, okay? you make every ordinary day feel special. today and every day, I celebrate you and us.
+`Dear Miss World,
+
+you're really cute no matter what. don't let anyone tell you any different, okay? you make every ordinary day feel special. today and every day, I celebrate you and us.
 
 xoxo,
 `;
