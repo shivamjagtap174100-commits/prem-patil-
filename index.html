@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Will You Go Out With Me? 💖</title>
+  <!-- Google Font: Press Start 2P for authentic 8-bit retro arcade feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sound Effects Toggle Button -->
+  <button id="soundToggle" class="retro-sound-btn" aria-label="Toggle retro sounds" title="Toggle 8-bit Sound Effects">
+    <span id="soundIcon">🔊</span> <span id="soundText">SFX: ON</span>
+  </button>
+
+  <!-- Parallax Pixel-Art Landscape Background -->
+  <div class="pixel-landscape" aria-hidden="true">
+    <!-- Starfield / Twinkling Pixel Dust -->
+    <div class="stars-layer"></div>
+    <!-- Distant Parallax Clouds Layer 1 (slow) -->
+    <div class="clouds-layer clouds-slow"></div>
+    <!-- Parallax Clouds Layer 2 (mid) -->
+    <div class="clouds-layer clouds-mid"></div>
+    <!-- Rolling Hills Layer 1 (Distant) -->
+    <div class="hills-layer hills-far"></div>
+    <!-- Rolling Hills Layer 2 (Near) -->
+    <div class="hills-layer hills-near"></div>
+    <!-- Cityscape Silhouette at bottom -->
+    <div class="cityscape-layer"></div>
+  </div>
+
+  <!-- Rising Floating Pixel Hearts Canvas -->
+  <canvas id="heartsCanvas" class="hearts-canvas" aria-hidden="true"></canvas>
+
+  <!-- Confetti / Particle Burst Canvas -->
+  <canvas id="burstCanvas" class="burst-canvas" aria-hidden="true"></canvas>
+
+  <!-- Top Right Floating Notification Pill (Screen 5 & 6) -->
+  <div id="notificationPill" class="notification-pill hidden" role="alert" tabindex="0">
+    <span class="notification-icon">💌</span>
+    <span class="notification-text">1 NEW MESSAGE</span>
+    <span class="notification-badge">!</span>
+  </div>
+
+  <!-- Main Game Boy / NES Style Frame Container -->
+  <main class="arcade-viewport">
+    <div class="retro-card">
+      <div class="card-inner-bevel">
+
+        <!-- SCREEN 1: THE PROPOSAL -->
+        <section id="screen-1" class="screen-view active">
+          <!-- Pixel Art White Cat Container -->
+          <div class="pixel-frame cat-frame">
+            <div class="pixel-art-wrapper cat-art-wrapper">
+              <!-- Pixel Art White Cat SVG -->
+              <svg class="pixel-svg cat-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Shadow -->
+                <rect x="7" y="29" width="18" height="2" fill="#d86991"/>
+                <!-- Cat Body & Tail -->
+                <rect x="23" y="21" width="3" height="5" fill="#fcf6f8"/>
+                <rect x="25" y="18" width="3" height="4" fill="#fcf6f8"/>
+                <rect x="24" y="16" width="3" height="3" fill="#fcf6f8"/>
+                <rect x="27" y="16" width="1" height="5" fill="#e898b0"/>
+                
+                <!-- Main Body -->
+                <rect x="9" y="19" width="14" height="10" fill="#ffffff"/>
+                <rect x="8" y="21" width="16" height="7" fill="#ffffff"/>
+                <!-- Belly shading -->
+                <rect x="11" y="23" width="10" height="5" fill="#ffeaf1"/>
+                <!-- Front paws -->
+                <rect x="10" y="27" width="3" height="3" fill="#ffffff"/>
+                <rect x="19" y="27" width="3" height="3" fill="#ffffff"/>
+                <rect x="10" y="29" width="3" height="1" fill="#f09bb7"/>
+                <rect x="19" y="29" width="3" height="1" fill="#f09bb7"/>
+
+                <!-- Cat Head -->
+                <rect x="8" y="9" width="16" height="11" fill="#ffffff"/>
+                <rect x="7" y="11" width="18" height="8" fill="#ffffff"/>
+                
+                <!-- Ears -->
+                <rect x="8" y="6" width="4" height="4" fill="#ffffff"/>
+                <rect x="9" y="4" width="3" height="3" fill="#ffffff"/>
+                <rect x="10" y="3" width="2" height="2" fill="#4a044e"/>
+                <rect x="9" y="6" width="2" height="3" fill="#ff80aa"/>
+
+                <rect x="20" y="6" width="4" height="4" fill="#ffffff"/>
+                <rect x="20" y="4" width="3" height="3" fill="#ffffff"/>
+                <rect x="20" y="3" width="2" height="2" fill="#4a044e"/>
+                <rect x="21" y="6" width="2" height="3" fill="#ff80aa"/>
+
+                <!-- Outline Accents -->
+                <rect x="8" y="8" width="16" height="1" fill="#4a044e"/>
+                <rect x="6" y="11" width="1" height="8" fill="#4a044e"/>
+                <rect x="25" y="11" width="1" height="8" fill="#4a044e"/>
+                <rect x="8" y="19" width="1" height="9" fill="#4a044e"/>
+                <rect x="24" y="19" width="1" height="9" fill="#4a044e"/>
+                <rect x="9" y="30" width="14" height="1" fill="#4a044e"/>
+
+                <!-- Eyes (Blinking animation via CSS class) -->
+                <g class="cat-eyes">
+                  <rect x="10" y="13" width="3" height="3" fill="#4a044e"/>
+                  <rect x="19" y="13" width="3" height="3" fill="#4a044e"/>
+                  <!-- Eye catchlights -->
+                  <rect x="10" y="13" width="1" height="1" fill="#ffffff"/>
+                  <rect x="19" y="13" width="1" height="1" fill="#ffffff"/>
+                </g>
+
+                <!-- Cute Blushing Cheeks -->
+                <rect x="8" y="16" width="3" height="2" fill="#ff6b9d" opacity="0.85"/>
+                <rect x="21" y="16" width="3" height="2" fill="#ff6b9d" opacity="0.85"/>
+
+                <!-- Nose & Mouth -->
+                <rect x="15" y="15" width="2" height="1" fill="#ff3377"/>
+                <rect x="14" y="16" width="1" height="1" fill="#4a044e"/>
+                <rect x="17" y="16" width="1" height="1" fill="#4a044e"/>
+                <rect x="15" y="17" width="2" height="1" fill="#4a044e"/>
+
+                <!-- Cute Pink Bow Tie -->
+                <rect x="14" y="19" width="4" height="2" fill="#ff1493"/>
+                <rect x="12" y="18" width="2" height="3" fill="#ff69b4"/>
+                <rect x="18" y="18" width="2" height="3" fill="#ff69b4"/>
+                <rect x="15" y="19" width="2" height="2" fill="#ff007f"/>
+              </svg>
+            </div>
+          </div>
+
+          <h1 class="headline main-title">Will you go out with me?</h1>
+
+          <!-- Button Choice Area -->
+          <div class="choice-container" id="choiceContainer">
+            <button id="btnYes" class="retro-btn btn-yes" type="button">
+              YES+
+            </button>
+            <button id="btnNo" class="retro-btn btn-no" type="button">
+              No
+            </button>
+          </div>
+
+          <!-- Dynamic Escalation Subtext -->
+          <div class="subtext-container">
+            <p id="noSubtext" class="subtext-warning hidden"></p>
+          </div>
+        </section>
+
+        <!-- SCREEN 2: THE CELEBRATION -->
+        <section id="screen-2" class="screen-view">
+          <div class="pixel-frame bears-frame">
+            <div class="pixel-art-wrapper bears-art-wrapper">
+              <!-- Pixel Art Hugging Bears SVG -->
+              <svg class="pixel-svg bears-svg" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Tiny floating hearts above bears -->
+                <g class="beating-heart">
+                  <rect x="18" y="1" width="2" height="2" fill="#ff0055"/>
+                  <rect x="22" y="1" width="2" height="2" fill="#ff0055"/>
+                  <rect x="17" y="2" width="8" height="2" fill="#ff0055"/>
+                  <rect x="18" y="4" width="6" height="2" fill="#ff0055"/>
+                  <rect x="19" y="6" width="4" height="1" fill="#ff0055"/>
+                  <rect x="20" y="7" width="2" height="1" fill="#ff0055"/>
+                </g>
+
+                <!-- Shadow -->
+                <rect x="6" y="29" width="28" height="2" fill="#d86991"/>
+
+                <!-- Left Bear (Warm Tan / Caramel) -->
+                <!-- Left Bear Ear -->
+                <rect x="8" y="7" width="4" height="4" fill="#a45228"/>
+                <rect x="9" y="8" width="2" height="2" fill="#ffd1b3"/>
+                <!-- Left Bear Head -->
+                <rect x="8" y="10" width="12" height="9" fill="#c4703a"/>
+                <rect x="7" y="12" width="14" height="6" fill="#c4703a"/>
+                <!-- Left Bear Eye & Blush -->
+                <rect x="12" y="13" width="2" height="2" fill="#2b1406"/>
+                <rect x="9" y="15" width="3" height="2" fill="#ff8da1"/>
+                <!-- Left Bear Snout -->
+                <rect x="14" y="14" width="4" height="3" fill="#ffe0cc"/>
+                <rect x="16" y="14" width="2" height="1" fill="#2b1406"/>
+                <!-- Left Bear Body -->
+                <rect x="8" y="18" width="13" height="10" fill="#a45228"/>
+                <!-- Left Bear Paws Hugging Right Bear -->
+                <rect x="15" y="19" width="8" height="3" fill="#c4703a"/>
+                <rect x="20" y="19" width="3" height="3" fill="#ffe0cc"/>
+
+                <!-- Right Bear (Cream White / Milk) -->
+                <!-- Right Bear Ear -->
+                <rect x="28" y="7" width="4" height="4" fill="#e8d3cb"/>
+                <rect x="29" y="8" width="2" height="2" fill="#ff99aa"/>
+                <!-- Right Bear Head -->
+                <rect x="20" y="10" width="12" height="9" fill="#ffffff"/>
+                <rect x="19" y="12" width="14" height="6" fill="#ffffff"/>
+                <!-- Right Bear Eye & Blush -->
+                <rect x="26" y="13" width="2" height="2" fill="#2b1406"/>
+                <rect x="28" y="15" width="3" height="2" fill="#ff8da1"/>
+                <!-- Right Bear Snout -->
+                <rect x="22" y="14" width="4" height="3" fill="#ffeef2"/>
+                <rect x="22" y="14" width="2" height="1" fill="#2b1406"/>
+                <!-- Right Bear Body -->
+                <rect x="19" y="18" width="13" height="10" fill="#ffffff"/>
+                <!-- Right Bear Hugging Arm around Left Bear -->
+                <rect x="17" y="21" width="8" height="3" fill="#f0e2df"/>
+                <rect x="16" y="21" width="3" height="3" fill="#ffffff"/>
+
+                <!-- Bear Outlines -->
+                <rect x="8" y="9" width="24" height="1" fill="#4a044e"/>
+                <rect x="6" y="12" width="1" height="16" fill="#4a044e"/>
+                <rect x="33" y="12" width="1" height="16" fill="#4a044e"/>
+                <rect x="8" y="29" width="24" height="1" fill="#4a044e"/>
+              </svg>
+            </div>
+          </div>
+
+          <h1 class="headline yay-title">YAY!</h1>
+          <p class="subtext">I'm so glad u said yes.</p>
+
+          <button id="btnContinueToDate" class="retro-btn btn-primary" type="button">
+            PRESS TO CONTINUE -&gt;
+          </button>
+        </section>
+
+        <!-- SCREEN 3: DATE PICKER -->
+        <section id="screen-3" class="screen-view">
+          <!-- Pixel Art Blushing Cat Icon -->
+          <div class="pixel-frame shy-frame">
+            <div class="pixel-art-wrapper shy-art-wrapper">
+              <!-- Shy Blushing Cat SVG -->
+              <svg class="pixel-svg shy-cat-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Shadow -->
+                <rect x="6" y="28" width="20" height="2" fill="#d86991"/>
+                
+                <!-- Shy Blushing Cat Body -->
+                <rect x="8" y="18" width="16" height="10" fill="#ffffff"/>
+                <rect x="7" y="20" width="18" height="7" fill="#ffffff"/>
+                
+                <!-- Shy Paws touching face -->
+                <rect x="9" y="17" width="4" height="4" fill="#ffffff"/>
+                <rect x="19" y="17" width="4" height="4" fill="#ffffff"/>
+                <rect x="10" y="19" width="2" height="2" fill="#ffd1dc"/>
+                <rect x="20" y="19" width="2" height="2" fill="#ffd1dc"/>
+
+                <!-- Cat Head slightly tilted -->
+                <rect x="7" y="8" width="18" height="11" fill="#ffffff"/>
+                <rect x="6" y="10" width="20" height="8" fill="#ffffff"/>
+
+                <!-- Ears -->
+                <rect x="7" y="5" width="4" height="4" fill="#ffffff"/>
+                <rect x="8" y="3" width="3" height="3" fill="#ffffff"/>
+                <rect x="9" y="5" width="2" height="2" fill="#ff77aa"/>
+
+                <rect x="21" y="5" width="4" height="4" fill="#ffffff"/>
+                <rect x="21" y="3" width="3" height="3" fill="#ffffff"/>
+                <rect x="21" y="5" width="2" height="2" fill="#ff77aa"/>
+
+                <!-- Shy Closed Eyes (^ _ ^) -->
+                <rect x="10" y="12" width="1" height="1" fill="#4a044e"/>
+                <rect x="11" y="11" width="2" height="1" fill="#4a044e"/>
+                <rect x="13" y="12" width="1" height="1" fill="#4a044e"/>
+
+                <rect x="18" y="12" width="1" height="1" fill="#4a044e"/>
+                <rect x="19" y="11" width="2" height="1" fill="#4a044e"/>
+                <rect x="21" y="12" width="1" height="1" fill="#4a044e"/>
+
+                <!-- Big Rosy Glowing Blush -->
+                <rect x="7" y="14" width="5" height="3" fill="#ff3b77" opacity="0.85"/>
+                <rect x="8" y="13" width="3" height="1" fill="#ff3b77" opacity="0.85"/>
+                <rect x="20" y="14" width="5" height="3" fill="#ff3b77" opacity="0.85"/>
+                <rect x="21" y="13" width="3" height="1" fill="#ff3b77" opacity="0.85"/>
+
+                <!-- Nose & Happy Little Mouth -->
+                <rect x="15" y="14" width="2" height="1" fill="#ff0055"/>
+                <rect x="14" y="15" width="1" height="1" fill="#4a044e"/>
+                <rect x="17" y="15" width="1" height="1" fill="#4a044e"/>
+                <rect x="15" y="16" width="2" height="1" fill="#4a044e"/>
+
+                <!-- Frame Outline accents -->
+                <rect x="7" y="8" width="18" height="1" fill="#4a044e"/>
+                <rect x="5" y="10" width="1" height="18" fill="#4a044e"/>
+                <rect x="26" y="10" width="1" height="18" fill="#4a044e"/>
+                <rect x="7" y="29" width="18" height="1" fill="#4a044e"/>
+              </svg>
+            </div>
+          </div>
+
+          <h2 class="headline">PICK A DATE</h2>
+          <p class="subtext">Choose the day for our cute little plan.</p>
+
+          <!-- Retro Date Picker Box -->
+          <div class="retro-input-box">
+            <label for="dateInput" class="retro-label">DATE [DD / MM / YYYY]:</label>
+            <div class="date-input-wrapper">
+              <input 
+                type="date" 
+                id="dateInput" 
+                class="retro-date-input" 
+                min="" 
+                required 
+              />
+              <div class="retro-date-display" id="dateDisplay">
+                <span class="placeholder-text">SELECT DATE 📅</span>
+              </div>
+            </div>
+            
+            <!-- Quick Preset Date Chips -->
+            <div class="quick-dates">
+              <button type="button" class="chip-btn" data-days="0">TODAY</button>
+              <button type="button" class="chip-btn" data-days="1">TOMORROW</button>
+              <button type="button" class="chip-btn" data-days="5">THIS WEEKEND</button>
+            </div>
+          </div>
+
+          <button id="btnContinueToActivity" class="retro-btn btn-primary disabled" type="button" disabled>
+            CONTINUE -&gt;
+          </button>
+        </section>
+
+        <!-- SCREEN 4: ACTIVITY SELECTION -->
+        <section id="screen-4" class="screen-view">
+          <h2 class="headline smaller-headline">WHAT WOULD YOU LIKE TO DO?</h2>
+          <p class="subtext">Pick an adventure for us!</p>
+
+          <!-- 2x3 Grid of Selectable Activities -->
+          <div class="activity-grid" role="radiogroup" aria-label="Activity Selection">
+            <button type="button" class="activity-card" data-activity="DINNER DATE" role="radio" aria-checked="false">
+              <span class="activity-icon">🍕</span>
+              <span class="activity-title">DINNER DATE</span>
+            </button>
+            <button type="button" class="activity-card" data-activity="MOVIE NIGHT" role="radio" aria-checked="false">
+              <span class="activity-icon">🎬</span>
+              <span class="activity-title">MOVIE NIGHT</span>
+            </button>
+            <button type="button" class="activity-card" data-activity="COFFEE &amp; WALK" role="radio" aria-checked="false">
+              <span class="activity-icon">☕</span>
+              <span class="activity-title">COFFEE &amp; WALK</span>
+            </button>
+            <button type="button" class="activity-card" data-activity="PICNIC" role="radio" aria-checked="false">
+              <span class="activity-icon">🧺</span>
+              <span class="activity-title">PICNIC</span>
+            </button>
+            <button type="button" class="activity-card" data-activity="MINI GOLF" role="radio" aria-checked="false">
+              <span class="activity-icon">⛳</span>
+              <span class="activity-title">MINI GOLF</span>
+            </button>
+            <button type="button" class="activity-card" data-activity="SURPRISE ME" role="radio" aria-checked="false">
+              <span class="activity-icon">✨</span>
+              <span class="activity-title">SURPRISE ME</span>
+            </button>
+          </div>
+
+          <button id="btnLockItIn" class="retro-btn btn-primary disabled" type="button" disabled>
+            LOCK IT IN -&gt;
+          </button>
+        </section>
+
+        <!-- SCREEN 5: CONFIRMATION & NOTIFICATION -->
+        <section id="screen-5" class="screen-view">
+          <div class="pixel-frame bears-frame">
+            <div class="pixel-art-wrapper bears-art-wrapper">
+              <!-- Re-use Hugging Bears Pixel Art -->
+              <svg class="pixel-svg bears-svg" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g class="beating-heart">
+                  <rect x="18" y="1" width="2" height="2" fill="#ff0055"/>
+                  <rect x="22" y="1" width="2" height="2" fill="#ff0055"/>
+                  <rect x="17" y="2" width="8" height="2" fill="#ff0055"/>
+                  <rect x="18" y="4" width="6" height="2" fill="#ff0055"/>
+                  <rect x="19" y="6" width="4" height="1" fill="#ff0055"/>
+                  <rect x="20" y="7" width="2" height="1" fill="#ff0055"/>
+                </g>
+                <rect x="6" y="29" width="28" height="2" fill="#d86991"/>
+                <rect x="8" y="7" width="4" height="4" fill="#a45228"/>
+                <rect x="9" y="8" width="2" height="2" fill="#ffd1b3"/>
+                <rect x="8" y="10" width="12" height="9" fill="#c4703a"/>
+                <rect x="7" y="12" width="14" height="6" fill="#c4703a"/>
+                <rect x="12" y="13" width="2" height="2" fill="#2b1406"/>
+                <rect x="9" y="15" width="3" height="2" fill="#ff8da1"/>
+                <rect x="14" y="14" width="4" height="3" fill="#ffe0cc"/>
+                <rect x="16" y="14" width="2" height="1" fill="#2b1406"/>
+                <rect x="8" y="18" width="13" height="10" fill="#a45228"/>
+                <rect x="15" y="19" width="8" height="3" fill="#c4703a"/>
+                <rect x="20" y="19" width="3" height="3" fill="#ffe0cc"/>
+                <rect x="28" y="7" width="4" height="4" fill="#e8d3cb"/>
+                <rect x="29" y="8" width="2" height="2" fill="#ff99aa"/>
+                <rect x="20" y="10" width="12" height="9" fill="#ffffff"/>
+                <rect x="19" y="12" width="14" height="6" fill="#ffffff"/>
+                <rect x="26" y="13" width="2" height="2" fill="#2b1406"/>
+                <rect x="28" y="15" width="3" height="2" fill="#ff8da1"/>
+                <rect x="22" y="14" width="4" height="3" fill="#ffeef2"/>
+                <rect x="22" y="14" width="2" height="1" fill="#2b1406"/>
+                <rect x="19" y="18" width="13" height="10" fill="#ffffff"/>
+                <rect x="17" y="21" width="8" height="3" fill="#f0e2df"/>
+                <rect x="16" y="21" width="3" height="3" fill="#ffffff"/>
+                <rect x="8" y="9" width="24" height="1" fill="#4a044e"/>
+                <rect x="6" y="12" width="1" height="16" fill="#4a044e"/>
+                <rect x="33" y="12" width="1" height="16" fill="#4a044e"/>
+                <rect x="8" y="29" width="24" height="1" fill="#4a044e"/>
+              </svg>
+            </div>
+          </div>
+
+          <h1 class="headline yay-title">IT'S A DATE!</h1>
+          
+          <!-- Confirmation Receipt Card -->
+          <div class="retro-receipt-box">
+            <div class="receipt-row">
+              <span class="receipt-label">DATE:</span>
+              <span class="receipt-val" id="summaryDate">Fri, August 21, 2026</span>
+            </div>
+            <div class="receipt-divider">======================</div>
+            <div class="receipt-row">
+              <span class="receipt-label">ACTIVITY:</span>
+              <span class="receipt-val" id="summaryActivity">COFFEE &amp; WALK</span>
+            </div>
+          </div>
+
+          <p class="subtext tip-text">Check your messages in the top right corner! ↗</p>
+          
+          <button id="btnOpenNoteManual" class="retro-btn btn-secondary" type="button">
+            💌 READ LOVE NOTE
+          </button>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- SCREEN 6: RETRO DRAGGABLE OS-STYLE WINDOW (THE LOVE NOTE) -->
+  <div id="loveNoteOverlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="draggableWindow" class="retro-os-window">
+      <!-- Title Bar -->
+      <div id="windowHeader" class="window-titlebar">
+        <div class="window-icon">📄</div>
+        <div id="modalTitle" class="window-title">love_note.txt</div>
+        <div class="window-controls">
+          <button id="btnMinimizeNote" class="window-ctrl-btn" title="Minimize">_</button>
+          <button id="btnCloseNote" class="window-ctrl-btn btn-close" title="Close">[X]</button>
+        </div>
+      </div>
+      
+      <!-- OS Window Menu Bar -->
+      <div class="window-menubar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>Heart</span>
+        <span>Help</span>
+      </div>
+
+      <!-- Window Text Content Area -->
+      <div class="window-body">
+        <div class="notepad-lines">
+          <p id="typewriterText" class="typewriter-content"></p>
+          <span id="typewriterCursor" class="blinking-cursor">█</span>
+        </div>
+
+        <!-- Custom Sender Name Ribbon -->
+        <div class="name-customizer-ribbon">
+          <label for="senderNameInput" class="name-label">From:</label>
+          <input type="text" id="senderNameInput" class="name-input" value="Your Name" maxlength="24" title="Change your name here" />
+        </div>
+
+        <div class="window-footer">
+          <button id="btnSaveCard" class="retro-btn btn-save" type="button">
+            📸 SAVE MEMORY CARD
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

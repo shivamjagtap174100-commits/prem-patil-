@@ -1,0 +1,1169 @@
+/* ==========================================================================
+   RETRO 8-BIT "WILL YOU GO OUT WITH ME?" - MONOCHROMATIC PINK THEME
+   Font: Press Start 2P | Pure CSS Pixel-Art Borders, Parallax Landscape
+   ========================================================================== */
+
+/* --- COLOR PALETTE (MONOCHROMATIC PINKS & MAGENTAS) --- */
+:root {
+  --pink-sky-top: #ffe8f0;
+  --pink-sky-bot: #fed0e0;
+  --pink-50: #fff0f5;
+  --pink-100: #ffe4ee;
+  --pink-200: #fecdd3;
+  --pink-300: #fda4af;
+  --pink-400: #fb7185;
+  --pink-500: #f43f5e;
+  --pink-600: #e11d48;
+  --pink-700: #be123c;
+  --pink-800: #881337;
+  --pink-900: #4c0519;
+  
+  --retro-dark: #3b0724;       /* Deep plum pixel outline */
+  --retro-dark-shadow: #280318;
+  --retro-border-size: 4px;
+  
+  --yes-pink: #ff1493;
+  --yes-pink-light: #ff69b4;
+  --yes-pink-dark: #c20068;
+
+  --no-bg: #ffffff;
+  --no-pink: #d81b60;
+
+  --pixel-font: 'Press Start 2P', 'Courier New', monospace;
+}
+
+/* --- RESET & GLOBAL BOX-SIZING --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--pixel-font);
+  color: var(--retro-dark);
+  background-color: var(--pink-sky-top);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* --- RETRO SOUND TOGGLE BUTTON (TOP LEFT) --- */
+.retro-sound-btn {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 1000;
+  background: var(--pink-100);
+  color: var(--retro-dark);
+  border: 3px solid var(--retro-dark);
+  box-shadow: 
+    3px 3px 0 0 var(--retro-dark),
+    inset -2px -2px 0 0 var(--pink-300),
+    inset 2px 2px 0 0 #ffffff;
+  padding: 8px 12px;
+  font-family: var(--pixel-font);
+  font-size: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.1s ease;
+}
+
+.retro-sound-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--retro-dark);
+}
+
+/* ==========================================================================
+   PARALLAX PIXEL-ART SCROLLING LANDSCAPE
+   Featuring Pink Clouds, Rolling Hills, and Cityscape Silhouette
+   ========================================================================== */
+.pixel-landscape {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffd9e8 0%, #ffc2d7 45%, #ffa6c5 80%, #f984ab 100%);
+}
+
+/* Twinkling Pixel Stars */
+.stars-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: 
+    radial-gradient(2px 2px at 15% 15%, #ffffff 100%, transparent),
+    radial-gradient(2px 2px at 35% 25%, #ffe6ef 100%, transparent),
+    radial-gradient(3px 3px at 55% 10%, #ffffff 100%, transparent),
+    radial-gradient(2px 2px at 75% 30%, #ffd1e1 100%, transparent),
+    radial-gradient(2px 2px at 85% 12%, #ffffff 100%, transparent),
+    radial-gradient(3px 3px at 95% 22%, #ffffff 100%, transparent),
+    radial-gradient(2px 2px at 25% 40%, #ffedf4 100%, transparent);
+  background-size: 300px 200px;
+  animation: starPulse 3s infinite ease-in-out alternate;
+}
+
+@keyframes starPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Pixel Clouds (Slow Parallax) */
+.clouds-layer {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  background-repeat: repeat-x;
+}
+
+.clouds-slow {
+  top: 6%;
+  height: 90px;
+  opacity: 0.85;
+  background-image: url("data:image/svg+xml,%3Csvg width='180' height='60' viewBox='0 0 180 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' fill-opacity='0.6' d='M40 30h60v10H40zM30 40h80v10H30zM50 20h40v10H50zM60 10h20v10H60zM120 35h40v10h-40zM110 45h60v10h-60zM130 25h20v10h-20z'/%3E%3C/svg%3E");
+  background-size: 360px 120px;
+  animation: parallaxScroll 45s linear infinite;
+}
+
+.clouds-mid {
+  top: 14%;
+  height: 110px;
+  opacity: 0.95;
+  background-image: url("data:image/svg+xml,%3Csvg width='240' height='70' viewBox='0 0 240 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffeef6' d='M60 30h80v15H60zM40 45h120v15H40zM75 15h50v15H75zM90 5h20v10H90z'/%3E%3C/svg%3E");
+  background-size: 480px 140px;
+  animation: parallaxScroll 26s linear infinite;
+}
+
+/* Distant Rolling Hills */
+.hills-far {
+  position: absolute;
+  bottom: 110px;
+  left: 0;
+  width: 200%;
+  height: 120px;
+  background-image: url("data:image/svg+xml,%3Csvg width='320' height='120' viewBox='0 0 320 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23f472b6' fill-opacity='0.7' d='M0 120V80h20V70h30V60h40V50h50V60h40V70h30V80h30V90h40V70h20V60h20v60z'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 640px 120px;
+  animation: parallaxScroll 38s linear infinite;
+}
+
+/* Near Rolling Hills */
+.hills-near {
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  width: 200%;
+  height: 130px;
+  background-image: url("data:image/svg+xml,%3Csvg width='280' height='130' viewBox='0 0 280 130' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23db2777' fill-opacity='0.8' d='M0 130V90h30V80h30V70h40V60h40V70h30V80h30V90h40V100h40v30z'/%3E%3C!-- Tiny pixel pine trees --%3E%3Cpath fill='%239d174d' d='M25 76h4v4h-4zm2 4h4v6h-4zm60 -14h4v4h-4zm2 4h4v6h-4zm110 16h4v4h-4zm2 4h4v6h-4z'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 560px 130px;
+  animation: parallaxScroll 20s linear infinite;
+}
+
+/* Cityscape Silhouette at Bottom */
+.cityscape-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 85px;
+  background-image: url("data:image/svg+xml,%3Csvg width='360' height='85' viewBox='0 0 360 85' xmlns='http://www.w3.org/2000/svg'%3E%3C!-- Pixel Skyscrapers --%3E%3Cpath fill='%234a044e' d='M0 85V45h20V30h25V85h10V20h30V85h15V50h20V85h15V15h25V85h10V35h30V85h15V25h20V85h15V40h35V85h15V10h20V85h20V55h20V85z'/%3E%3C!-- Lit Windows in Pink & Yellow --%3E%3Cpath fill='%23ffb3d9' d='M8 50h4v4H8zm0 10h4v4H8zm28 -15h4v4h-4zm0 12h4v4h-4zm35 -20h4v4h-4zm0 15h4v4h-4zm0 15h4v4h-4zm50 15h4v4h-4zm40 -35h4v4h-4zm0 12h4v4h-4zm0 12h4v4h-4zm45 -22h4v4h-4zm0 15h4v4h-4zm45 10h4v4h-4zm40 -40h4v4h-4zm0 15h4v4h-4zm0 15h4v4h-4z'/%3E%3Cpath fill='%23fff3b0' d='M65 30h4v4h-4zm90 10h4v4h-4zm75 5h4v4h-4zm115 -25h4v4h-4z'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 720px 85px;
+  animation: parallaxScroll 14s linear infinite;
+}
+
+@keyframes parallaxScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   CANVAS OVERLAYS: FLOATING HEARTS & CONFETTI BURST
+   ========================================================================== */
+.hearts-canvas, .burst-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hearts-canvas {
+  z-index: 2;
+}
+
+.burst-canvas {
+  z-index: 50;
+}
+
+/* ==========================================================================
+   MAIN ARCADE VIEWPORT & 8-BIT CARD CONTAINER
+   Thick retro pixel borders, layered shadows, beveled inner edges
+   ========================================================================== */
+.arcade-viewport {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+/* The Iconic 8-bit Dialog / Frame Container */
+.retro-card {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  background: var(--pink-50);
+  border: 4px solid var(--retro-dark);
+  /* 8-bit stepped pixel corners & retro drop shadow */
+  box-shadow: 
+    0 -4px 0 0 var(--retro-dark),
+    0 4px 0 0 var(--retro-dark),
+    -4px 0 0 0 var(--retro-dark),
+    4px 0 0 0 var(--retro-dark),
+    8px 8px 0 0 var(--retro-dark),
+    12px 12px 0 0 rgba(74, 4, 78, 0.25);
+  padding: 10px;
+  transition: all 0.25s ease;
+}
+
+/* Card inner pixel bevel */
+.card-inner-bevel {
+  border: 3px solid var(--pink-300);
+  background: #fffbfa;
+  padding: 30px 24px;
+  box-shadow: inset 2px 2px 0 0 #ffffff, inset -2px -2px 0 0 var(--pink-200);
+}
+
+/* Screen Views (State transitions) */
+.screen-view {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.screen-view.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   PIXEL-ART IMAGE FRAMES & SVGS
+   ========================================================================== */
+.pixel-frame {
+  display: inline-block;
+  background: var(--pink-100);
+  border: 4px solid var(--retro-dark);
+  box-shadow: 
+    0 -3px 0 0 var(--retro-dark),
+    0 3px 0 0 var(--retro-dark),
+    -3px 0 0 0 var(--retro-dark),
+    3px 0 0 0 var(--retro-dark),
+    4px 4px 0 0 var(--pink-400);
+  padding: 12px;
+  margin-bottom: 22px;
+  background-image: 
+    radial-gradient(#fed7e2 15%, transparent 16%),
+    radial-gradient(#fed7e2 15%, transparent 16%);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+.pixel-art-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pixel-svg {
+  width: 130px;
+  height: 130px;
+  display: block;
+}
+
+.bears-svg {
+  width: 170px;
+  height: 136px;
+}
+
+.shy-cat-svg {
+  width: 130px;
+  height: 130px;
+}
+
+/* Animated Cat Eyes Blinking */
+.cat-eyes {
+  animation: pixelBlink 4s infinite;
+  transform-origin: center;
+}
+
+@keyframes pixelBlink {
+  0%, 94%, 100% {
+    transform: scaleY(1);
+  }
+  96%, 98% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* Animated Beating Heart Above Bears */
+.beating-heart {
+  animation: heartThrob 1.2s infinite ease-in-out;
+  transform-origin: 21px 4px;
+}
+
+@keyframes heartThrob {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+}
+
+/* Shy Cat Gentle Sway */
+.shy-frame {
+  animation: shyWiggle 3.5s infinite ease-in-out;
+}
+
+@keyframes shyWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+/* ==========================================================================
+   HEADLINES & RETRO TYPOGRAPHY
+   ========================================================================== */
+.headline {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--retro-dark);
+  text-shadow: 2px 2px 0 var(--pink-200);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.main-title {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.yay-title {
+  font-size: 26px;
+  color: var(--pink-600);
+  text-shadow: 3px 3px 0 var(--pink-200);
+  letter-spacing: 1.5px;
+  animation: yayPulse 1.5s infinite alternate;
+}
+
+@keyframes yayPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+
+.smaller-headline {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.subtext {
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--pink-700);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   BUTTONS & MICRO-INTERACTIONS (8-BIT PIXEL BORDERS)
+   ========================================================================== */
+.retro-btn {
+  font-family: var(--pixel-font);
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 4px solid var(--retro-dark);
+  box-shadow: 
+    0 -3px 0 0 var(--retro-dark),
+    0 3px 0 0 var(--retro-dark),
+    -3px 0 0 0 var(--retro-dark),
+    3px 0 0 0 var(--retro-dark),
+    4px 4px 0 0 var(--retro-dark);
+  padding: 14px 20px;
+  position: relative;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  user-select: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.retro-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 
+    0 -3px 0 0 var(--retro-dark),
+    0 3px 0 0 var(--retro-dark),
+    -3px 0 0 0 var(--retro-dark),
+    3px 0 0 0 var(--retro-dark),
+    1px 1px 0 0 var(--retro-dark);
+}
+
+/* Primary Button (Bright Pink) */
+.btn-primary {
+  background: var(--pink-500);
+  color: #ffffff;
+  text-shadow: 2px 2px 0 var(--retro-dark);
+  box-shadow: 
+    0 -3px 0 0 var(--retro-dark),
+    0 3px 0 0 var(--retro-dark),
+    -3px 0 0 0 var(--retro-dark),
+    3px 0 0 0 var(--retro-dark),
+    inset -3px -3px 0 0 var(--pink-700),
+    inset 3px 3px 0 0 var(--pink-300),
+    4px 4px 0 0 var(--retro-dark);
+}
+
+.btn-primary:hover:not(.disabled) {
+  background: var(--pink-600);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--pink-600);
+  font-size: 10px;
+  padding: 12px 16px;
+  box-shadow: 
+    0 -3px 0 0 var(--retro-dark),
+    0 3px 0 0 var(--retro-dark),
+    -3px 0 0 0 var(--retro-dark),
+    3px 0 0 0 var(--retro-dark),
+    inset -2px -2px 0 0 var(--pink-200),
+    inset 2px 2px 0 0 #ffffff,
+    4px 4px 0 0 var(--retro-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--pink-50);
+}
+
+/* Disabled State */
+.retro-btn.disabled, .retro-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(40%);
+}
+
+/* Screen 1 Button Choices: YES+ & NO */
+.choice-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  min-height: 100px;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.btn-yes {
+  background: var(--yes-pink);
+  color: #ffffff;
+  font-size: 14px;
+  padding: 16px 26px;
+  text-shadow: 2px 2px 0 var(--retro-dark);
+  box-shadow: 
+    0 -3px 0 0 var(--retro-dark),
+    0 3px 0 0 var(--retro-dark),
+    -3px 0 0 0 var(--retro-dark),
+    3px 0 0 0 var(--retro-dark),
+    inset -3px -3px 0 0 var(--yes-pink-dark),
+    inset 3px 3px 0 0 var(--yes-pink-light),
+    4px 4px 0 0 var(--retro-dark);
+  z-index: 20;
+  transform-origin: center center;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), font-size 0.2s ease;
+}
+
+.btn-yes:hover {
+  background: #ff007f;
+}
+
+.btn-no {
+  background: var(--no-bg);
+  color: var(--no-pink);
+  font-size: 14px;
+  padding: 16px 24px;
+  text-shadow: 1px 1px 0 var(--pink-100);
+  box-shadow: 
+    0 -3px 0 0 var(--retro-dark),
+    0 3px 0 0 var(--retro-dark),
+    -3px 0 0 0 var(--retro-dark),
+    3px 0 0 0 var(--retro-dark),
+    inset -3px -3px 0 0 var(--pink-200),
+    inset 3px 3px 0 0 #ffffff,
+    4px 4px 0 0 var(--retro-dark);
+  transition: transform 0.15s ease, opacity 0.2s ease;
+  z-index: 10;
+}
+
+.btn-no:hover {
+  background: var(--pink-50);
+}
+
+/* Warning Subtext on Escalation */
+.subtext-container {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.subtext-warning {
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--pink-600);
+  background: var(--pink-100);
+  border: 2px solid var(--retro-dark);
+  padding: 6px 12px;
+  animation: shakeWarning 0.3s ease-in-out;
+}
+
+@keyframes shakeWarning {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* When YES button goes fullscreen mode */
+.btn-yes.fullscreen-takeover {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+  width: 90vw !important;
+  max-width: 650px !important;
+  height: 260px !important;
+  font-size: 22px !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: pulseHuge 1s infinite alternate !important;
+  box-shadow: 
+    0 -6px 0 0 var(--retro-dark),
+    0 6px 0 0 var(--retro-dark),
+    -6px 0 0 0 var(--retro-dark),
+    6px 0 0 0 var(--retro-dark),
+    12px 12px 0 0 var(--retro-dark) !important;
+}
+
+@keyframes pulseHuge {
+  0% { transform: translate(-50%, -50%) scale(0.97); }
+  100% { transform: translate(-50%, -50%) scale(1.03); }
+}
+
+/* ==========================================================================
+   SCREEN 3: DATE PICKER STYLES
+   ========================================================================== */
+.retro-input-box {
+  width: 100%;
+  background: var(--pink-100);
+  border: 3px solid var(--retro-dark);
+  box-shadow: 
+    inset 2px 2px 0 0 #ffffff,
+    inset -2px -2px 0 0 var(--pink-200),
+    3px 3px 0 0 var(--retro-dark);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.retro-label {
+  display: block;
+  font-size: 9px;
+  color: var(--retro-dark);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.date-input-wrapper {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.retro-date-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.retro-date-display {
+  background: #ffffff;
+  border: 3px solid var(--retro-dark);
+  box-shadow: inset 2px 2px 0 0 var(--pink-200);
+  padding: 14px 12px;
+  font-size: 11px;
+  color: var(--pink-700);
+  letter-spacing: 1px;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+
+.retro-date-display.has-date {
+  color: var(--retro-dark);
+  background: var(--pink-50);
+  font-weight: bold;
+}
+
+.placeholder-text {
+  color: var(--pink-400);
+}
+
+.quick-dates {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  font-family: var(--pixel-font);
+  font-size: 8px;
+  padding: 6px 8px;
+  background: #ffffff;
+  color: var(--pink-600);
+  border: 2px solid var(--retro-dark);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 0 var(--retro-dark);
+}
+
+.chip-btn:hover {
+  background: var(--pink-200);
+}
+
+.chip-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 0 var(--retro-dark);
+}
+
+/* ==========================================================================
+   SCREEN 4: ACTIVITY GRID (2x3)
+   ========================================================================== */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.activity-card {
+  font-family: var(--pixel-font);
+  background: #ffffff;
+  color: var(--pink-700);
+  border: 3px solid var(--retro-dark);
+  box-shadow: 
+    0 -2px 0 0 var(--retro-dark),
+    0 2px 0 0 var(--retro-dark),
+    -2px 0 0 0 var(--retro-dark),
+    2px 0 0 0 var(--retro-dark),
+    inset -2px -2px 0 0 var(--pink-200),
+    inset 2px 2px 0 0 #ffffff,
+    3px 3px 0 0 var(--retro-dark);
+  padding: 14px 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.1s ease;
+}
+
+.activity-card:hover {
+  background: var(--pink-100);
+  color: var(--retro-dark);
+}
+
+.activity-icon {
+  font-size: 20px;
+  display: block;
+}
+
+.activity-title {
+  font-size: 8px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Active Highlight State (Inverted Pink Background) */
+.activity-card.active,
+.activity-card[aria-checked="true"] {
+  background: var(--pink-600) !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 0 var(--retro-dark);
+  box-shadow: 
+    0 -2px 0 0 var(--retro-dark),
+    0 2px 0 0 var(--retro-dark),
+    -2px 0 0 0 var(--retro-dark),
+    2px 0 0 0 var(--retro-dark),
+    inset 2px 2px 0 0 var(--pink-800),
+    inset -2px -2px 0 0 var(--pink-400),
+    1px 1px 0 0 var(--retro-dark);
+  transform: translate(2px, 2px);
+}
+
+/* ==========================================================================
+   SCREEN 5: CONFIRMATION RECEIPT
+   ========================================================================== */
+.retro-receipt-box {
+  width: 100%;
+  background: #ffffff;
+  border: 3px solid var(--retro-dark);
+  box-shadow: 
+    inset 2px 2px 0 0 var(--pink-100),
+    inset -2px -2px 0 0 var(--pink-200),
+    4px 4px 0 0 var(--retro-dark);
+  padding: 16px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.receipt-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.receipt-label {
+  font-size: 8px;
+  color: var(--pink-500);
+}
+
+.receipt-val {
+  font-size: 10px;
+  color: var(--retro-dark);
+  word-break: break-word;
+}
+
+.receipt-divider {
+  color: var(--pink-300);
+  font-size: 9px;
+  letter-spacing: -1px;
+  margin: 6px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tip-text {
+  font-size: 8px;
+  color: var(--pink-600);
+  margin-bottom: 16px;
+  animation: bounceTip 1.5s infinite ease-in-out;
+}
+
+@keyframes bounceTip {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* ==========================================================================
+   TOP-RIGHT FLOATING NOTIFICATION PILL
+   ========================================================================== */
+.notification-pill {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 1000;
+  background: var(--yes-pink);
+  color: #ffffff;
+  border: 3px solid var(--retro-dark);
+  box-shadow: 
+    0 -2px 0 0 var(--retro-dark),
+    0 2px 0 0 var(--retro-dark),
+    -2px 0 0 0 var(--retro-dark),
+    2px 0 0 0 var(--retro-dark),
+    inset -2px -2px 0 0 var(--yes-pink-dark),
+    inset 2px 2px 0 0 var(--yes-pink-light),
+    4px 4px 0 0 var(--retro-dark);
+  padding: 10px 14px;
+  font-family: var(--pixel-font);
+  font-size: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: dropDownBounce 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseNotification 2s infinite ease-in-out;
+}
+
+.notification-pill.hidden {
+  display: none !important;
+}
+
+@keyframes dropDownBounce {
+  0% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseNotification {
+  0%, 100% {
+    box-shadow: 
+      0 -2px 0 0 var(--retro-dark),
+      0 2px 0 0 var(--retro-dark),
+      -2px 0 0 0 var(--retro-dark),
+      2px 0 0 0 var(--retro-dark),
+      4px 4px 0 0 var(--retro-dark);
+  }
+  50% {
+    box-shadow: 
+      0 -2px 0 0 var(--retro-dark),
+      0 2px 0 0 var(--retro-dark),
+      -2px 0 0 0 var(--retro-dark),
+      2px 0 0 0 var(--retro-dark),
+      0 0 14px 4px rgba(255, 20, 147, 0.75),
+      4px 4px 0 0 var(--retro-dark);
+  }
+}
+
+.notification-badge {
+  background: #ffffff;
+  color: var(--pink-600);
+  font-size: 8px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border: 1px solid var(--retro-dark);
+}
+
+/* ==========================================================================
+   SCREEN 6: RETRO DRAGGABLE OS-STYLE WINDOW (THE LOVE NOTE)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(59, 7, 36, 0.65);
+  backdrop-filter: blur(2px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+  opacity: 0;
+}
+
+.retro-os-window {
+  position: relative;
+  width: 100%;
+  max-width: 490px;
+  background: #ffffff;
+  border: 4px solid var(--retro-dark);
+  box-shadow: 
+    0 -4px 0 0 var(--retro-dark),
+    0 4px 0 0 var(--retro-dark),
+    -4px 0 0 0 var(--retro-dark),
+    4px 0 0 0 var(--retro-dark),
+    10px 10px 0 0 var(--retro-dark);
+  user-select: none;
+}
+
+/* Dark Pink Header Bar */
+.window-titlebar {
+  background: var(--pink-700);
+  color: #ffffff;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+  border-bottom: 3px solid var(--retro-dark);
+  font-size: 10px;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.window-title {
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0 var(--retro-dark);
+  flex-grow: 1;
+  margin-left: 8px;
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.window-ctrl-btn {
+  font-family: var(--pixel-font);
+  font-size: 9px;
+  background: var(--pink-200);
+  color: var(--retro-dark);
+  border: 2px solid var(--retro-dark);
+  box-shadow: 1px 1px 0 0 var(--retro-dark);
+  width: 22px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.window-ctrl-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.btn-close {
+  background: #ff4d6d;
+  color: #ffffff;
+}
+
+/* Menu Bar (File, Edit, Heart, Help) */
+.window-menubar {
+  background: var(--pink-100);
+  border-bottom: 2px solid var(--pink-300);
+  display: flex;
+  gap: 16px;
+  padding: 6px 12px;
+  font-size: 8px;
+  color: var(--retro-dark);
+}
+
+.window-menubar span {
+  cursor: default;
+}
+
+/* Window Content Body */
+.window-body {
+  padding: 20px 18px;
+  background: #fffafa;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.notepad-lines {
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 23px,
+    #ffd1dc 23px,
+    #ffd1dc 25px
+  );
+  padding: 8px 6px;
+  min-height: 170px;
+}
+
+.typewriter-content {
+  font-size: 10px;
+  line-height: 25px;
+  color: var(--retro-dark);
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: inline;
+}
+
+.blinking-cursor {
+  font-size: 11px;
+  color: var(--pink-600);
+  animation: cursorBlink 0.8s infinite;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+@keyframes cursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Customizer Ribbon for Sender Name */
+.name-customizer-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 10px;
+  background: var(--pink-100);
+  border: 2px dashed var(--pink-400);
+}
+
+.name-label {
+  font-size: 8px;
+  color: var(--pink-700);
+}
+
+.name-input {
+  font-family: var(--pixel-font);
+  font-size: 9px;
+  color: var(--retro-dark);
+  background: #ffffff;
+  border: 2px solid var(--retro-dark);
+  padding: 4px 6px;
+  outline: none;
+  flex-grow: 1;
+}
+
+.name-input:focus {
+  border-color: var(--pink-600);
+}
+
+.window-footer {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  font-size: 9px;
+  padding: 10px 14px;
+  background: var(--pink-400);
+  color: #ffffff;
+}
+
+.btn-save:hover {
+  background: var(--pink-500);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE & SMALL SCREENS)
+   ========================================================================== */
+@media (max-width: 580px) {
+  .arcade-viewport {
+    padding: 60px 12px 30px;
+  }
+
+  .retro-card {
+    padding: 6px;
+  }
+
+  .card-inner-bevel {
+    padding: 22px 14px;
+  }
+
+  .headline {
+    font-size: 13px;
+  }
+
+  .main-title {
+    font-size: 14px;
+  }
+
+  .yay-title {
+    font-size: 20px;
+  }
+
+  .subtext {
+    font-size: 9px;
+    margin-bottom: 18px;
+  }
+
+  .retro-btn {
+    font-size: 10px;
+    padding: 12px 16px;
+  }
+
+  .choice-container {
+    gap: 14px;
+  }
+
+  .activity-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .activity-card {
+    padding: 10px 4px;
+  }
+
+  .activity-title {
+    font-size: 7px;
+  }
+
+  .retro-sound-btn {
+    padding: 6px 8px;
+    font-size: 8px;
+  }
+
+  .notification-pill {
+    padding: 8px 10px;
+    font-size: 8px;
+  }
+
+  .retro-os-window {
+    max-width: 95%;
+  }
+
+  .typewriter-content {
+    font-size: 9px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .headline {
+    font-size: 12px;
+  }
+
+  .btn-yes, .btn-no {
+    font-size: 11px;
+    padding: 12px 14px;
+  }
+  
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
